@@ -2,6 +2,7 @@
 #define SO_LONG_H
 #include <unistd.h>
 #include <stdlib.h>
+#include <fcntl.h>
 #include "MinilibX/mlx.h"
 
 typedef struct s_game{
