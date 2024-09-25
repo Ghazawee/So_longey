@@ -85,12 +85,14 @@ void    img_on_win(t_game *game, int ts) // rendering
     int r;
     int c;
 
+    //clear window if needed//mlx_clear_window(game->mlx_ptr, game->mlx_win);
     r = 0;
     while(game->map[r])
     {
         c = 0;
         while(game->map[r][c])
         {   
+            mlx_put_image_to_window(game->mlx_ptr, game->mlx_win, game->fimg, c * ts, r * ts);
             if(game->map[r][c] == '1')
                 mlx_put_image_to_window(game->mlx_ptr, game->mlx_win, game->wimg, c * ts, r * ts);
             else if(game->map[r][c] == 'P')

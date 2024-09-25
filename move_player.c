@@ -40,6 +40,7 @@ void    move_upwards(t_game *game) // we need to get the py & px first
     get_px_py(game);
     if (game->map[game->py - 1][game->px] != '1')
     {
+        game->map[game->py][game->px] = '0';
         if (game->map[game->py - 1][game->px] == 'C')
             is_it_collectiible(game);
         else if (game->map[game->py - 1][game->px] == 'E')
@@ -49,6 +50,7 @@ void    move_upwards(t_game *game) // we need to get the py & px first
             game->py--;
             game->steps++;
             printf("steps: %d\n", game->steps);
+            // set new pos here before calling function ?? // game->map[game->py][game->px] = 'P';
             img_on_win(game, 32);
         }  
     }
@@ -67,6 +69,7 @@ void    move_downwards(t_game *game)
     get_px_py(game);
     if (game->map[game->py + 1][game->px] != '1')
     {
+        game->map[game->py][game->px] = '0';
         if (game->map[game->py + 1][game->px] == 'C')
             is_it_collectiible(game);
         else if (game->map[game->py + 1][game->px] == 'E')
@@ -76,6 +79,7 @@ void    move_downwards(t_game *game)
             game->py++;
             game->steps++;
             printf("steps: %d\n", game->steps);
+            //similar to upw
             img_on_win(game, 32);
         }  
     }
@@ -86,6 +90,7 @@ void    move_to_right(t_game *game)
     get_px_py(game);
     if (game->map[game->py][game->px + 1] != '1')
     {
+        game->map[game->py][game->px] = '0';
         if (game->map[game->py][game->px + 1] == 'C')
             is_it_collectiible(game);
         else if (game->map[game->py][game->px + 1] == 'E')
@@ -95,6 +100,7 @@ void    move_to_right(t_game *game)
             game->px++;
             game->steps++;
             printf("steps: %d\n", game->steps);
+            //similar to upw
             img_on_win(game, 32);
         }  
     }
@@ -105,6 +111,7 @@ void    move_to_left(t_game *game)
     get_px_py(game);
     if (game->map[game->py][game->px - 1] != '1')
     {
+        game->map[game->py][game->px] = '0';
         if (game->map[game->py][game->px - 1] == 'C')
             is_it_collectiible(game);
         else if (game->map[game->py][game->px - 1] == 'E')
@@ -114,6 +121,7 @@ void    move_to_left(t_game *game)
             game->px--;
             game->steps++;
             printf("steps: %d\n", game->steps);
+            //similar to upw
             img_on_win(game, 32);
         }  
     }
