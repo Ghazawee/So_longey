@@ -1,9 +1,10 @@
 NAME = so_long
 
-MLX = ../MinilibX/mlx.h
-MLX_FLAGS = 
+MLX = ../mlx/mlx.h
+MLX_FLAGS = -Lmlx -lmlx -framework OpenGL -framework AppKit
 
-SRC = so_long.c parse.c free.c
+SRC = so_long.c map_parse.c free.c handle_events.c\
+	map_utils.c move_player.c str_utils.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -14,4 +15,5 @@ CFLAGS = -Wall -Werror -Wextra
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
+	$(CC) $(CFLAGS) $(MLX_FLAGS) -o $(NAME) $(OBJ)
+

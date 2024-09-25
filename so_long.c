@@ -1,5 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mshaheen <mshaheen@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/25 14:36:58 by mshaheen          #+#    #+#             */
+/*   Updated: 2024/09/25 19:50:34 by mshaheen         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
-#include "MinilibX/mlx.h"
+#include "mlx/mlx.h"
 
 
 void    init_val(t_game *game)
@@ -40,7 +52,10 @@ void    read_map(char *map, t_game *game)
     total_rows = rows_count(map);
     game->map = (char **)malloc(sizeof(char *) * total_rows + 1);
     if (!game->map)
+    {
+        write(2, "error in malloc\n", 16);
         exit(1);
+    }
     fd = open(map, O_RDONLY);
     if (!fd)
     {
@@ -48,22 +63,27 @@ void    read_map(char *map, t_game *game)
         write(2, "error opening map file\n", 23);
         exit(1);
     }
-    line = get_next_line(fd) // i think i have to free but i need to do some strdup strjoin stuff
+   line = get_next_line(fd); // i think i have to free but i need to do some strdup strjoin stuff
     while(line)
     {
         game->map[rows] = line;
         rows++;
+        line = get_next_line(fd);
     }
     game->map[rows] = NULL;
     close(fd);
+    print_map(game);
 }
 void    begin_game(char *map, t_game *game)
 {
+    //check if av[1] || map ends in .ber else exit(1) with error
     read_map(map, game);
+    //print_map(game);
     map_parsing(game);
     put_imgs(game);
     img_on_win(game, 32);
     mlx_key_hook(game->mlx_win, key_pressed, game);
+    mlx_hook(game->mlx_win, 17, 1L<<17, x_mark_clicked, &game);
     mlx_loop(game->mlx_ptr);
     // i can add a function that checks if the map has been read properly
     //render the map and images
@@ -82,8 +102,8 @@ int main(int ac, char **av)
     }
     init_val(&game);
     begin_game(av[1], &game);
-    mlx_hook(game.mlx_win, 17, 1L<<17, x_mark_clicked, game);
-    mlx_loop(game.mlx_ptr);
+     //mlx_hook(game.mlx_win, 17, 1L<<17, x_mark_clicked, &game);
+    // mlx_loop(game.mlx_ptr);
 }
 
 // int main(int ac , char **av)

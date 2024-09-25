@@ -1,4 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_parse.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mshaheen <mshaheen@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/25 14:38:05 by mshaheen          #+#    #+#             */
+/*   Updated: 2024/09/25 20:13:27 by mshaheen         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
+
+char *rem_newline(char *str)
+{
+    int len = fts_strlen(str);
+   if(len > 0 && str[len - 1] == '\n')
+    {
+        str[len - 1] = '\0';
+    }
+    return(str);
+}
 
 int map_rect(t_game *game)
 {
@@ -6,10 +28,10 @@ int map_rect(t_game *game)
     int rlen;
 
     i = 1;
-    rlen = ft_strlen(game->map[0]);
+    rlen = fts_strlen(rem_newline(game->map[0]));
     while(game->map[i])
     {
-        if (ft_strlen(game->map[i] != rlen)
+        if ((fts_strlen(rem_newline(game->map[i]))) != rlen)
             return (0);
         i++;
     }
@@ -21,7 +43,7 @@ int valid_map(t_game *game)
     int i;
     int j;
     
-    i = 0
+    i = 0;
     while(game->map[i])
     {
         j = 0;
@@ -39,7 +61,7 @@ int valid_map(t_game *game)
         }
         i++;
     }
-    if (game->player != 1 || game->collect < 1 || game->exit < 1)
+    if (game->player != 1 || game->collect < 1 || game->exit != 1)
         return (0);
     return (1);
 }
@@ -82,6 +104,7 @@ void    map_parsing(t_game *game)
     }
     if (!valid_map(game))
     {
+        printf("player: %d, collect: %d, exit: %d\n", game->player, game->collect, game->exit);
         write(2, "Required Characters not found\n", 30);
         free_map_array(game);
         exit(1);

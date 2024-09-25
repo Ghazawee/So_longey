@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_utils.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mshaheen <mshaheen@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/25 14:37:12 by mshaheen          #+#    #+#             */
+/*   Updated: 2024/09/25 14:37:12 by mshaheen         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 
@@ -7,6 +19,7 @@ int rows_count(char *map)
     int rows;
     char *line;
 
+    rows = 0;
     fd = open(map, O_RDONLY);
     if(!fd)
     {
@@ -20,7 +33,7 @@ int rows_count(char *map)
         free(line);
         line = get_next_line(fd);
     }
-    return (rows)
+    return (rows);
 }
 
 void    put_imgs(t_game *game)
@@ -28,11 +41,11 @@ void    put_imgs(t_game *game)
     int w;
     int h;
 
-    game->wimg = mlx_xpm_file_to_image(game->mlx_ptr, "path for wall img", &w, &h);
-    game->pimg = mlx_xpm_file_to_image(game->mlx_ptr, "path for player img", &w, &h);
-    game->fimg = mlx_xpm_file_to_image(game->mlx_ptr, "path for floor img", &w, &h);
-    game->cimg = mlx_xpm_file_to_image(game->mlx_ptr, "path for collectable img", &w, &h);
-    game->eimg = mlx_xpm_file_to_image(game->mlx_ptr, "path for exit img", &w, &h);
+    game->wimg = mlx_xpm_file_to_image(game->mlx_ptr, "imgs/walls.xpm", &w, &h);
+    game->pimg = mlx_xpm_file_to_image(game->mlx_ptr, "imgs/player.xpm", &w, &h);
+    game->fimg = mlx_xpm_file_to_image(game->mlx_ptr, "imgs/floor.xpm", &w, &h);
+    game->cimg = mlx_xpm_file_to_image(game->mlx_ptr, "imgs/collect.xpm", &w, &h);
+    game->eimg = mlx_xpm_file_to_image(game->mlx_ptr, "img/exit.xpm", &w, &h);
 
     if (!game->wimg || !game->pimg || !game->fimg || !game->cimg || !game->eimg)
     {
@@ -79,13 +92,15 @@ void    img_on_win(t_game *game, int ts) // rendering
     }
 }
 
-void print_map(t_game *game) // just to see if the map is read correctly
+
+void print_map(t_game *game) // not necessarily just to see if the map is read correctly
 {
     int i= 0;
     while (game->map[i])
     {
         write(1, game->map[i], ft_strlen(game->map[i]));
-        write(1, "\n", 1);
+        //write(1, "\n", 1);
         i++;
     }
+    write(1, "\n", 1);
 }
