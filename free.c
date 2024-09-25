@@ -35,5 +35,5 @@ void    free_map_array(t_game *game)
 int    x_mark_clicked(t_game *game)
 {
     exit_game_esc_x(game);
-    return (0);
+    exit(0);
 }

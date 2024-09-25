@@ -6,7 +6,7 @@
 /*   By: mshaheen <mshaheen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 14:36:58 by mshaheen          #+#    #+#             */
-/*   Updated: 2024/09/25 19:50:34 by mshaheen         ###   ########.fr       */
+/*   Updated: 2024/09/25 20:36:36 by mshaheen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,7 @@ void    read_map(char *map, t_game *game)
     total_rows = rows_count(map);
     game->map = (char **)malloc(sizeof(char *) * total_rows + 1);
     if (!game->map)
-    {
-        write(2, "error in malloc\n", 16);
         exit(1);
-    }
     fd = open(map, O_RDONLY);
     if (!fd)
     {
@@ -63,7 +60,7 @@ void    read_map(char *map, t_game *game)
         write(2, "error opening map file\n", 23);
         exit(1);
     }
-   line = get_next_line(fd); // i think i have to free but i need to do some strdup strjoin stuff
+    line = get_next_line(fd); // i think i have to free but i need to do some strdup strjoin stuff
     while(line)
     {
         game->map[rows] = line;
@@ -72,7 +69,7 @@ void    read_map(char *map, t_game *game)
     }
     game->map[rows] = NULL;
     close(fd);
-    print_map(game);
+    print_map(game); // dont need this
 }
 void    begin_game(char *map, t_game *game)
 {
@@ -83,7 +80,7 @@ void    begin_game(char *map, t_game *game)
     put_imgs(game);
     img_on_win(game, 32);
     mlx_key_hook(game->mlx_win, key_pressed, game);
-    mlx_hook(game->mlx_win, 17, 1L<<17, x_mark_clicked, &game);
+    mlx_hook(game->mlx_win, 17, 1L<<17, x_mark_clicked, game);
     mlx_loop(game->mlx_ptr);
     // i can add a function that checks if the map has been read properly
     //render the map and images

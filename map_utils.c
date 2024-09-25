@@ -45,20 +45,35 @@ void    put_imgs(t_game *game)
     game->pimg = mlx_xpm_file_to_image(game->mlx_ptr, "imgs/player.xpm", &w, &h);
     game->fimg = mlx_xpm_file_to_image(game->mlx_ptr, "imgs/floor.xpm", &w, &h);
     game->cimg = mlx_xpm_file_to_image(game->mlx_ptr, "imgs/collect.xpm", &w, &h);
-    game->eimg = mlx_xpm_file_to_image(game->mlx_ptr, "img/exit.xpm", &w, &h);
+    game->eimg = mlx_xpm_file_to_image(game->mlx_ptr, "imgs/exit.xpm", &w, &h);
 
     if (!game->wimg || !game->pimg || !game->fimg || !game->cimg || !game->eimg)
     {
         if(game->wimg)
+        {
+            printf("wimg\n");
             mlx_destroy_image(game->mlx_ptr, game->wimg);
+        }
         if(game->pimg)
+        {
+            printf("pimg\n");
             mlx_destroy_image(game->mlx_ptr, game->pimg);
+        }
         if(game->fimg)
+        {
+            printf("fimg\n");
             mlx_destroy_image(game->mlx_ptr, game->fimg);
+        }
         if(game->cimg)
+        {
+            printf("cimg\n");
             mlx_destroy_image(game->mlx_ptr, game->cimg);
+        }
         if(game->eimg)
+        {
+            printf("eimg\n");
             mlx_destroy_image(game->mlx_ptr, game->eimg);
+        }
         free_map_array(game);
         write(2, "Error loading image\n", 20);
         exit(1);
@@ -75,7 +90,7 @@ void    img_on_win(t_game *game, int ts) // rendering
     {
         c = 0;
         while(game->map[r][c])
-        {
+        {   
             if(game->map[r][c] == '1')
                 mlx_put_image_to_window(game->mlx_ptr, game->mlx_win, game->wimg, r * ts, c * ts);
             else if(game->map[r][c] == 'P')
