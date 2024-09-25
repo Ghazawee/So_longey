@@ -92,15 +92,15 @@ void    img_on_win(t_game *game, int ts) // rendering
         while(game->map[r][c])
         {   
             if(game->map[r][c] == '1')
-                mlx_put_image_to_window(game->mlx_ptr, game->mlx_win, game->wimg, r * ts, c * ts);
+                mlx_put_image_to_window(game->mlx_ptr, game->mlx_win, game->wimg, c * ts, r * ts);
             else if(game->map[r][c] == 'P')
-                mlx_put_image_to_window(game->mlx_ptr, game->mlx_win, game->pimg, r * ts, c * ts);
+                mlx_put_image_to_window(game->mlx_ptr, game->mlx_win, game->pimg, c * ts, r * ts);
             else if(game->map[r][c] == '0')
-                mlx_put_image_to_window(game->mlx_ptr, game->mlx_win, game->fimg, r * ts, c * ts);
+                mlx_put_image_to_window(game->mlx_ptr, game->mlx_win, game->fimg, c * ts, r * ts);
             else if(game->map[r][c] == 'C')
-                mlx_put_image_to_window(game->mlx_ptr, game->mlx_win, game->cimg, r * ts, c * ts);
+                mlx_put_image_to_window(game->mlx_ptr, game->mlx_win, game->cimg, c * ts, r * ts);
             else if(game->map[r][c] == 'E')
-                mlx_put_image_to_window(game->mlx_ptr, game->mlx_win, game->eimg, r * ts, c * ts);
+                mlx_put_image_to_window(game->mlx_ptr, game->mlx_win, game->eimg, c * ts, r * ts);
             c++;
         }
         r++;
