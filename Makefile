@@ -44,7 +44,7 @@ clean:
 
 fclean: clean
 	rm -f $(NAME)
-	make -C $(MLX_DIR) fclean 
+	make -C $(MLX_DIR) clean 
 
 re: fclean all
 

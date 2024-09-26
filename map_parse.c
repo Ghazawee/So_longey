@@ -6,7 +6,7 @@
 /*   By: mshaheen <mshaheen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 14:38:05 by mshaheen          #+#    #+#             */
-/*   Updated: 2024/09/25 20:13:27 by mshaheen         ###   ########.fr       */
+/*   Updated: 2024/09/26 16:21:54 by mshaheen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,14 +80,14 @@ int surr_walls(t_game *game)
     rowend--;
     while (i < rlen)
     {
-        if (game->map[0][i] != '1' && game->map[rowend][i] != '1')
+        if (game->map[0][i] != '1' || game->map[rowend][i] != '1')
             return (0);
         i++;
     }
     i = 0;
     while (i <= rowend)
     {
-        if (game->map[i][0] != '1' && game->map[i][rlen -1] != '1')
+        if (game->map[i][0] != '1' || game->map[i][rlen -1] != '1')
             return (0);
         i++;
     }

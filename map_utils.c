@@ -13,7 +13,7 @@
 #include "so_long.h"
 
 
-int rows_count(char *map)
+int rows_count(char *map, t_game *game)
 {
     int fd;
     int rows;
@@ -21,9 +21,12 @@ int rows_count(char *map)
 
     rows = 0;
     fd = open(map, O_RDONLY);
-    if(!fd)
+    if(fd == -1)
     {
-        write(2, "Error opening map\n", 18);
+        if (game->mlx_win)
+            mlx_destroy_window(game->mlx_ptr, game->mlx_win);
+        free(game->mlx_ptr);
+        write(2, "Map not found\n", 14);
         exit(1);
     }
     line = get_next_line(fd);
@@ -50,42 +53,25 @@ void    put_imgs(t_game *game)
     if (!game->wimg || !game->pimg || !game->fimg || !game->cimg || !game->eimg)
     {
         if(game->wimg)
-        {
-            printf("wimg\n");
             mlx_destroy_image(game->mlx_ptr, game->wimg);
-        }
         if(game->pimg)
-        {
-            printf("pimg\n");
             mlx_destroy_image(game->mlx_ptr, game->pimg);
-        }
         if(game->fimg)
-        {
-            printf("fimg\n");
             mlx_destroy_image(game->mlx_ptr, game->fimg);
-        }
         if(game->cimg)
-        {
-            printf("cimg\n");
             mlx_destroy_image(game->mlx_ptr, game->cimg);
-        }
         if(game->eimg)
-        {
-            printf("eimg\n");
             mlx_destroy_image(game->mlx_ptr, game->eimg);
-        }
         free_map_array(game);
         write(2, "Error loading image\n", 20);
         exit(1);
     }
 }
 
-void    img_on_win(t_game *game, int ts) // rendering
+void    img_on_win(t_game *game, int ts)
 {
     int r;
     int c;
-
-    //clear window if needed//mlx_clear_window(game->mlx_ptr, game->mlx_win);
     r = 0;
     while(game->map[r])
     {
@@ -109,8 +95,8 @@ void    img_on_win(t_game *game, int ts) // rendering
     }
 }
 
-
-void print_map(t_game *game) // not necessarily just to see if the map is read correctly
+// not necessarily just to see if the map is read correctly
+void print_map(t_game *game)
 {
     int i= 0;
     while (game->map[i])

@@ -6,7 +6,7 @@
 /*   By: mshaheen <mshaheen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 14:36:58 by mshaheen          #+#    #+#             */
-/*   Updated: 2024/09/25 20:36:36 by mshaheen         ###   ########.fr       */
+/*   Updated: 2024/09/26 18:45:05 by mshaheen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void    init_val(t_game *game)
     game->mlx_ptr = mlx_init();
     if (!game->mlx_ptr)
         exit(1);
-    game->mlx_win = mlx_new_window(game->mlx_ptr, 800, 600, "so_long");
+    game->mlx_win = mlx_new_window(game->mlx_ptr, 800, 640, "so_long");
     if (!game->mlx_win)
     {
         free(game->mlx_ptr);
@@ -49,15 +49,15 @@ void    read_map(char *map, t_game *game)
     char    *line;
 
     rows = 0;
-    total_rows = rows_count(map);
+    total_rows = rows_count(map, game);
     game->map = (char **)malloc(sizeof(char *) * total_rows + 1);
     if (!game->map)
         exit(1);
     fd = open(map, O_RDONLY);
-    if (!fd)
+    if (fd == -1)
     {
         free(game->map);
-        write(2, "error opening map file\n", 23);
+        write(2, "Map not found\n", 14);
         exit(1);
     }
     line = get_next_line(fd); // i think i have to free but i need to do some strdup strjoin stuff
@@ -69,11 +69,10 @@ void    read_map(char *map, t_game *game)
     }
     game->map[rows] = NULL;
     close(fd);
-    print_map(game); // dont need this
+    //print_map(game); // dont need this
 }
 void    begin_game(char *map, t_game *game)
 {
-    //check if av[1] || map ends in .ber else exit(1) with error
     read_map(map, game);
     //print_map(game);
     map_parsing(game);
@@ -97,23 +96,15 @@ int main(int ac, char **av)
         write(2, "Only one argument should be passed\n", 35);
         exit(1);
     }
+    //check if av[1] || map ends in .ber else exit(1) with error
+    if(check_ber(av[1]) == 0)
+    {
+        write(2, "Invalid Map\n", 12);
+        exit(1);
+    }
     init_val(&game);
     begin_game(av[1], &game);
      //mlx_hook(game.mlx_win, 17, 1L<<17, x_mark_clicked, &game);
     // mlx_loop(game.mlx_ptr);
 }
 
-// int main(int ac , char **av)
-// {
-//     void    *mlx_ptr;
-//     void    *mlx_window;
-
-//     mlx_ptr = mlx_init();
-//     if(!mlx_ptr)
-//         return (1);
-//     mlx_window = mlx_new_window(mlx_ptr, 600, 400, "so_long");
-//     if(!mlx_window)
-//         return (free(mlx_ptr), 1);
-//     mlx_loop(mlx_ptr);
-//     return(0);
-// }

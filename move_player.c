@@ -6,7 +6,7 @@
 /*   By: mshaheen <mshaheen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 14:44:27 by mshaheen          #+#    #+#             */
-/*   Updated: 2024/09/25 21:50:14 by mshaheen         ###   ########.fr       */
+/*   Updated: 2024/09/26 13:32:59 by mshaheen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void    move_upwards(t_game *game) // we need to get the py & px first
             game->steps++;
             printf("steps: %d\n", game->steps);
             // set new pos here before calling function ?? // game->map[game->py][game->px] = 'P';
+            game->map[game->py][game->px] = 'P';
             img_on_win(game, 32);
         }  
     }
@@ -80,6 +81,7 @@ void    move_downwards(t_game *game)
             game->steps++;
             printf("steps: %d\n", game->steps);
             //similar to upw
+            game->map[game->py][game->px] = 'P';
             img_on_win(game, 32);
         }  
     }
@@ -101,6 +103,7 @@ void    move_to_right(t_game *game)
             game->steps++;
             printf("steps: %d\n", game->steps);
             //similar to upw
+            game->map[game->py][game->px] = 'P';
             img_on_win(game, 32);
         }  
     }
@@ -122,6 +125,7 @@ void    move_to_left(t_game *game)
             game->steps++;
             printf("steps: %d\n", game->steps);
             //similar to upw
+            game->map[game->py][game->px] = 'P';
             img_on_win(game, 32);
         }  
     }

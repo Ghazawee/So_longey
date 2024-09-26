@@ -6,7 +6,7 @@
 /*   By: mshaheen <mshaheen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 14:37:07 by mshaheen          #+#    #+#             */
-/*   Updated: 2024/09/25 21:32:41 by mshaheen         ###   ########.fr       */
+/*   Updated: 2024/09/26 18:06:05 by mshaheen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_game{
 }t_game;
 
 //free
+int check_ber(char *str);
 void    destroy_imgs(t_game *game);
 void    free_map_array(t_game *game);
 int    x_mark_clicked(t_game *game);
@@ -61,7 +62,7 @@ void    move_to_right(t_game *game);
 void    move_to_left(t_game *game);
 
 //map_utils
-int     rows_count(char *map);
+int     rows_count(char *map, t_game *game);
 void    put_imgs(t_game *game);
 void    img_on_win(t_game *game, int ts);
 
@@ -70,7 +71,7 @@ void    map_parsing(t_game *game);
 
 //str_utils
 int	fts_strlen(char *s);
-
+int	ft_strncmp(const char *s1, const char *s2, size_t n);
 void    print_map(t_game *game);
 
 #endif
