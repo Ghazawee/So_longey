@@ -17,6 +17,7 @@ int rows_count(char *map, t_game *game)
 {
     int fd;
     int rows;
+    int columns;
     char *line;
 
     rows = 0;
@@ -33,9 +34,13 @@ int rows_count(char *map, t_game *game)
     while (line)
     {
         rows++;
+        columns = ft_strlen(line);
         free(line);
         line = get_next_line(fd);
     }
+    game->rows = rows;
+    game->columns = columns;
+    ft_printf("rows: %d, columns:%d\n", game->rows, game->columns);
     return (rows);
 }
 

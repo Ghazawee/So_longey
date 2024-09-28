@@ -3,6 +3,7 @@ NAME = so_long
 
 MLX_DIR = mlx
 GNL_DIR = get_next_line
+FPF = ft_printf
 IMG_DIR = imgs
 
 SRCS = so_long.c \
@@ -13,7 +14,11 @@ SRCS = so_long.c \
        bfs.c free.c \
 	   str_utils.c \
        $(GNL_DIR)/get_next_line.c \
-       $(GNL_DIR)/get_next_line_utils.c
+       $(GNL_DIR)/get_next_line_utils.c\
+	   $(FPF)/ft_printf.c $(FPF)/dicases.c\
+	   $(FPF)/ft_putchar.c $(FPF)/ft_puthbr.c\
+	   $(FPF)/ft_putnbr.c $(FPF)/ft_putpbr.c\
+	   $(FPF)/ft_putstr.c $(FPF)/ft_putubr.c\
 
 OBJS = $(SRCS:.c=.o)
 

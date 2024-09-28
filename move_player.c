@@ -42,18 +42,20 @@ void    move_upwards(t_game *game) // we need to get the py & px first
     {
         game->map[game->py][game->px] = '0';
         if (game->map[game->py - 1][game->px] == 'C')
-            is_it_collectiible(game);
+            game->collect--;
+            //is_it_collectiible(game);
         else if (game->map[game->py - 1][game->px] == 'E')
             is_exit_open(game);
-        else
-        {
+        // else
+        // {
             game->py--;
             game->steps++;
-            printf("steps: %d\n", game->steps);
+            //printf("steps: %d\n", game->steps);
+            ft_printf("steps: %d\n", game->steps);
             // set new pos here before calling function ?? // game->map[game->py][game->px] = 'P';
             game->map[game->py][game->px] = 'P';
             img_on_win(game, 32);
-        }  
+        //}  
     }
     //check if next move is not a wall, game->map[game->px -1][game->px] != '1'
     //inside check if next move is collectable if yes call a function
@@ -72,18 +74,20 @@ void    move_downwards(t_game *game)
     {
         game->map[game->py][game->px] = '0';
         if (game->map[game->py + 1][game->px] == 'C')
-            is_it_collectiible(game);
+            game->collect--
+            //is_it_collectiible(game);
         else if (game->map[game->py + 1][game->px] == 'E')
             is_exit_open(game);
-        else
-        {
+        // else
+        // {
             game->py++;
             game->steps++;
-            printf("steps: %d\n", game->steps);
+            ft_printf("steps: %d\n", game->steps);
+            //printf("steps: %d\n", game->steps);
             //similar to upw
             game->map[game->py][game->px] = 'P';
             img_on_win(game, 32);
-        }  
+        //}  
     }
 }
 
@@ -94,18 +98,20 @@ void    move_to_right(t_game *game)
     {
         game->map[game->py][game->px] = '0';
         if (game->map[game->py][game->px + 1] == 'C')
-            is_it_collectiible(game);
+            game->collect--;
+            //is_it_collectiible(game);
         else if (game->map[game->py][game->px + 1] == 'E')
             is_exit_open(game);
-        else
-        {
+        // else
+        // {
             game->px++;
             game->steps++;
-            printf("steps: %d\n", game->steps);
+            ft_printf("steps: %d\n", game->steps);
+            //printf("steps: %d\n", game->steps);
             //similar to upw
             game->map[game->py][game->px] = 'P';
             img_on_win(game, 32);
-        }  
+        //}  
     }
 }
 
@@ -116,18 +122,20 @@ void    move_to_left(t_game *game)
     {
         game->map[game->py][game->px] = '0';
         if (game->map[game->py][game->px - 1] == 'C')
-            is_it_collectiible(game);
+            game->collect--;
+            //is_it_collectiible(game);
         else if (game->map[game->py][game->px - 1] == 'E')
             is_exit_open(game);
-        else
-        {
+        // else
+        // {
             game->px--;
             game->steps++;
-            printf("steps: %d\n", game->steps);
+            ft_printf("steps: %d\n", game->steps);
+            //printf("steps: %d\n", game->steps);
             //similar to upw
             game->map[game->py][game->px] = 'P';
             img_on_win(game, 32);
-        }  
+        //}  
     }
 }
 
