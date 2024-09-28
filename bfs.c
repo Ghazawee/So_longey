@@ -18,7 +18,7 @@ void bfs(t_game *game)
     cir.visited = malloc(sizeof(int *) * game->rows);
     i = 0;
     while(i < game->rows)
-        cir.visited[i++] = ft_calloc((size_t)game->columns, sizeof(int));
+        cir.visited[i++] = fts_calloc((size_t)game->columns, sizeof(int));
     cir.checkc = game->collect;
     while(cir.front < cir.rear)
     {

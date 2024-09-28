@@ -99,6 +99,6 @@ void    bfs(t_game *game);
 int	fts_strlen(char *s);
 int	ft_strncmp(const char *s1, const char *s2, size_t n);
 void    print_map(t_game *game);
-void	*ft_calloc(size_t count, size_t size);
+void	*fts_calloc(size_t count, size_t size);
 
 #endif
