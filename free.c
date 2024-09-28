@@ -55,6 +55,13 @@ void    free_map_array(t_game *game)
     }
     if (game->mlx_win)
         mlx_destroy_window(game->mlx_ptr, game->mlx_win);
+    free(game->mlx_ptr);
+}
+
+void free_all(t_game *game)
+{
+    destroy_imgs(game);
+    free_map_array(game);
 }
 
 int    x_mark_clicked(t_game *game)

@@ -20,6 +20,25 @@
 #include "get_next_line/get_next_line.h"
 //#include "MinilibX/mlx.h"
 
+
+typedef struct s_axis{
+
+    int x;
+    int y;
+}t_axis;
+
+typedef struct s_bfs{
+    
+    int x;
+    int y;
+    t_axis  *queue;
+    int checkc;
+    int rear;
+    int front;
+    int **visited;
+
+}t_bfs;
+
 typedef struct s_game{
 
     void    *mlx_ptr;
@@ -28,6 +47,8 @@ typedef struct s_game{
     int     player;
     int     collect;
     int     exit;
+    int     rows;
+    int     columns;
     int     steps;
     int     score;
     int     toscore;
@@ -68,6 +89,7 @@ void    img_on_win(t_game *game, int ts);
 
 //map_parse
 void    map_parsing(t_game *game);
+void    bfs(t_game *game);
 
 //str_utils
 int	fts_strlen(char *s);

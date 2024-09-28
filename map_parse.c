@@ -29,12 +29,17 @@ int map_rect(t_game *game)
 
     i = 1;
     rlen = fts_strlen(rem_newline(game->map[0]));
+    game->columns = rlen;
     while(game->map[i])
     {
         if ((fts_strlen(rem_newline(game->map[i]))) != rlen)
             return (0);
         i++;
     }
+    i = 0;
+    while(game->map[i])
+        i++;
+    game->rows = i;
     return (1);
 }
 

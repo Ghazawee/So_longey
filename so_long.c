@@ -76,6 +76,7 @@ void    begin_game(char *map, t_game *game)
     read_map(map, game);
     //print_map(game);
     map_parsing(game);
+    bfs(game);
     put_imgs(game);
     img_on_win(game, 32);
     mlx_key_hook(game->mlx_win, key_pressed, game);

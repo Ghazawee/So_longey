@@ -10,7 +10,7 @@ SRCS = so_long.c \
        map_utils.c \
        map_parse.c \
        handle_events.c \
-       free.c \
+       bfs.c free.c \
 	   str_utils.c \
        $(GNL_DIR)/get_next_line.c \
        $(GNL_DIR)/get_next_line_utils.c
