@@ -79,6 +79,7 @@ void    begin_game(char *map, t_game *game)
     get_px_py(game);
     get_ex_ey(game);
     bfs(game);
+    //dfs(game) try depth first search if needed// also i might scale my tile to 64
     put_imgs(game);
     img_on_win(game, 32);
     mlx_key_hook(game->mlx_win, key_pressed, game);
