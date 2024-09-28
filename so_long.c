@@ -76,6 +76,8 @@ void    begin_game(char *map, t_game *game)
     read_map(map, game);
     //print_map(game);
     map_parsing(game);
+    get_px_py(game);
+    get_ex_ey(game);
     bfs(game);
     put_imgs(game);
     img_on_win(game, 32);
@@ -103,6 +105,7 @@ int main(int ac, char **av)
         write(2, "Invalid Map\n", 12);
         exit(1);
     }
+    printf("i am here");
     init_val(&game);
     begin_game(av[1], &game);
      //mlx_hook(game.mlx_win, 17, 1L<<17, x_mark_clicked, &game);
