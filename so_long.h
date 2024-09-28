@@ -55,6 +55,8 @@ typedef struct s_game{
     int     gover;
     int     px;
     int     py;
+    int     ey;
+    int     ex;
     void    *fimg;
     void    *pimg;
     void    *wimg;
@@ -64,6 +66,7 @@ typedef struct s_game{
 
 //free
 int check_ber(char *str);
+void free_all(t_game *game);
 void    destroy_imgs(t_game *game);
 void    free_map_array(t_game *game);
 int    x_mark_clicked(t_game *game);
@@ -86,6 +89,7 @@ void    move_to_left(t_game *game);
 int     rows_count(char *map, t_game *game);
 void    put_imgs(t_game *game);
 void    img_on_win(t_game *game, int ts);
+void    get_ex_ey(t_game *game);
 
 //map_parse
 void    map_parsing(t_game *game);
@@ -95,5 +99,6 @@ void    bfs(t_game *game);
 int	fts_strlen(char *s);
 int	ft_strncmp(const char *s1, const char *s2, size_t n);
 void    print_map(t_game *game);
+void	*ft_calloc(size_t count, size_t size);
 
 #endif

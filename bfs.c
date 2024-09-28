@@ -11,7 +11,7 @@ void bfs(t_game *game)
     int     i;
     t_axis  curr;
 
-    cir.queue = malloc(sizeof(t_pos) * game->columns * game->rows);
+    cir.queue = malloc(sizeof(t_axis) * game->columns * game->rows);
     cir.rear = 0;
     cir.front = 0;
     enqueue(&cir, game->px, game->py);

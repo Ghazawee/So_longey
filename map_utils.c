@@ -95,6 +95,29 @@ void    img_on_win(t_game *game, int ts)
     }
 }
 
+void    get_ex_ey(t_game *game)
+{
+    int i;
+    int j;
+
+    i = 0;
+    while(game->map[i])
+    {
+        j = 0;
+        while(game->map[i][j])
+        {
+            if(game->map[i][j] == 'E')
+            {
+                game->ey = i;
+                game->ex = j;
+                break;
+            }
+            j++;
+        }
+        i++;
+    }
+}
+
 // not necessarily just to see if the map is read correctly
 void print_map(t_game *game)
 {
