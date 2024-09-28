@@ -74,7 +74,7 @@ void    move_downwards(t_game *game)
     {
         game->map[game->py][game->px] = '0';
         if (game->map[game->py + 1][game->px] == 'C')
-            game->collect--
+            game->collect--;
             //is_it_collectiible(game);
         else if (game->map[game->py + 1][game->px] == 'E')
             is_exit_open(game);
