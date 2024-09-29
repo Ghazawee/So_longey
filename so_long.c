@@ -6,7 +6,7 @@
 /*   By: mshaheen <mshaheen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 14:36:58 by mshaheen          #+#    #+#             */
-/*   Updated: 2024/09/26 18:45:05 by mshaheen         ###   ########.fr       */
+/*   Updated: 2024/09/29 19:34:52 by mshaheen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void    init_val(t_game *game)
     game->mlx_ptr = mlx_init();
     if (!game->mlx_ptr)
         exit(1);
-    game->mlx_win = mlx_new_window(game->mlx_ptr, 800, 640, "so_long");
+    game->mlx_win = mlx_new_window(game->mlx_ptr, 2560, 1344, "so_long");
     if (!game->mlx_win)
     {
         free(game->mlx_ptr);
@@ -74,6 +74,7 @@ void    read_map(char *map, t_game *game)
 void    begin_game(char *map, t_game *game)
 {
     read_map(map, game);
+    //init_val(game);
     //print_map(game);
     map_parsing(game);
     get_px_py(game);
@@ -81,7 +82,7 @@ void    begin_game(char *map, t_game *game)
     bfs(game);
     //dfs(game) try depth first search if needed// also i might scale my tile to 64
     put_imgs(game);
-    img_on_win(game, 32);
+    img_on_win(game, 64);
     mlx_key_hook(game->mlx_win, key_pressed, game);
     mlx_hook(game->mlx_win, 17, 1L<<17, x_mark_clicked, game);
     mlx_loop(game->mlx_ptr);
@@ -100,7 +101,6 @@ int main(int ac, char **av)
         write(2, "Only one argument should be passed\n", 35);
         exit(1);
     }
-    //check if av[1] || map ends in .ber else exit(1) with error
     if(check_ber(av[1]) == 0)
     {
         write(2, "Invalid Map\n", 12);

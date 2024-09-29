@@ -6,7 +6,7 @@
 /*   By: mshaheen <mshaheen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 14:44:27 by mshaheen          #+#    #+#             */
-/*   Updated: 2024/09/26 13:32:59 by mshaheen         ###   ########.fr       */
+/*   Updated: 2024/09/29 18:12:46 by mshaheen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,20 +42,21 @@ void    move_upwards(t_game *game) // we need to get the py & px first
     {
         game->map[game->py][game->px] = '0';
         if (game->map[game->py - 1][game->px] == 'C')
-            game->collect--;
+            is_it_collectiible(game, game->px, game->py - 1);
+            //game->collect--;
             //is_it_collectiible(game);
         else if (game->map[game->py - 1][game->px] == 'E')
             is_exit_open(game);
-        // else
-        // {
+        else
+        {
             game->py--;
             game->steps++;
             //printf("steps: %d\n", game->steps);
             ft_printf("steps: %d\n", game->steps);
             // set new pos here before calling function ?? // game->map[game->py][game->px] = 'P';
             game->map[game->py][game->px] = 'P';
-            img_on_win(game, 32);
-        //}  
+            img_on_win(game, 64);
+        }  
     }
     //check if next move is not a wall, game->map[game->px -1][game->px] != '1'
     //inside check if next move is collectable if yes call a function
@@ -74,20 +75,20 @@ void    move_downwards(t_game *game)
     {
         game->map[game->py][game->px] = '0';
         if (game->map[game->py + 1][game->px] == 'C')
-            game->collect--;
-            //is_it_collectiible(game);
+            is_it_collectiible(game, game->px, game->py + 1);
+            //game->collect--;
         else if (game->map[game->py + 1][game->px] == 'E')
             is_exit_open(game);
-        // else
-        // {
+        else
+        {
             game->py++;
             game->steps++;
             ft_printf("steps: %d\n", game->steps);
             //printf("steps: %d\n", game->steps);
             //similar to upw
             game->map[game->py][game->px] = 'P';
-            img_on_win(game, 32);
-        //}  
+            img_on_win(game, 64);
+        }  
     }
 }
 
@@ -98,20 +99,20 @@ void    move_to_right(t_game *game)
     {
         game->map[game->py][game->px] = '0';
         if (game->map[game->py][game->px + 1] == 'C')
-            game->collect--;
-            //is_it_collectiible(game);
+            is_it_collectiible(game, game->px + 1, game->py);
+            //game->collect--;
         else if (game->map[game->py][game->px + 1] == 'E')
             is_exit_open(game);
-        // else
-        // {
+        else
+        {
             game->px++;
             game->steps++;
             ft_printf("steps: %d\n", game->steps);
             //printf("steps: %d\n", game->steps);
             //similar to upw
             game->map[game->py][game->px] = 'P';
-            img_on_win(game, 32);
-        //}  
+            img_on_win(game, 64);
+        }  
     }
 }
 
@@ -122,20 +123,20 @@ void    move_to_left(t_game *game)
     {
         game->map[game->py][game->px] = '0';
         if (game->map[game->py][game->px - 1] == 'C')
-            game->collect--;
-            //is_it_collectiible(game);
+            is_it_collectiible(game, game->px - 1, game->py);
+            //game->collect--;
         else if (game->map[game->py][game->px - 1] == 'E')
             is_exit_open(game);
-        // else
-        // {
+        else
+        {
             game->px--;
             game->steps++;
             ft_printf("steps: %d\n", game->steps);
             //printf("steps: %d\n", game->steps);
             //similar to upw
             game->map[game->py][game->px] = 'P';
-            img_on_win(game, 32);
-        //}  
+            img_on_win(game, 64);
+        }  
     }
 }
 

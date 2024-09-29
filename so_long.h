@@ -6,7 +6,7 @@
 /*   By: mshaheen <mshaheen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 14:37:07 by mshaheen          #+#    #+#             */
-/*   Updated: 2024/09/26 18:06:05 by mshaheen         ###   ########.fr       */
+/*   Updated: 2024/09/29 15:45:32 by mshaheen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int    x_mark_clicked(t_game *game);
 
 //handle_events
 int    key_pressed(int key, t_game *game);
-void    is_it_collectiible(t_game *game);
+void    is_it_collectiible(t_game *game, int x, int y);
 void    is_exit_open(t_game *game);
 void    exit_game_esc_x(t_game *game);
 void    exit_game_done(t_game *game);

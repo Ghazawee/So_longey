@@ -11,15 +11,15 @@ void bfs(t_game *game)
     int     i;
     t_axis  curr;
 
-    cir.queue = malloc(sizeof(t_axis) * (game->columns * game->rows + 1));
+    cir.queue = malloc(sizeof(t_axis) * ((game->columns * game->rows) + 1));
     cir.rear = 0;
     cir.front = 0;
-    //enqueue(&cir, game->px, game->py);
-    cir.visited = malloc(sizeof(int *) * game->rows);
+    cir.visited = malloc(sizeof(int *) * (game->rows + 1));
     i = 0;
     while(i < game->rows)
         cir.visited[i++] = fts_calloc((size_t)(game->columns + 1), sizeof(int));
     cir.checkc = game->collect;
+    ft_printf("collect: %d\ncheck.c: %d\n,exitcord: %d,%d\n", game->collect, cir.checkc, game->ex, game->ey);
     enqueue(&cir, game->px, game->py);
     while(cir.front < cir.rear)
     {
@@ -40,7 +40,12 @@ int is_valid_path(t_game *game, t_bfs *cir, int x, int y)
 {
     if (x < 0 || x >= game->columns || y < 0 || y >= game->rows)
         return (0);
-    if (game->map[y][x] == '1' || (game->map[y][x] == 'E' && cir->checkc > 0))
+    if(game->map[y][x] == 'E' && cir->checkc > 0)
+    {
+        cir->visited[y][x] = 1;
+        return (0);
+    }
+    if (game->map[y][x] == '1') // || (game->map[y][x] == 'E' && cir->checkc > 0))
         return (0);
     return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: mshaheen <mshaheen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 14:38:23 by mshaheen          #+#    #+#             */
-/*   Updated: 2024/09/26 19:06:17 by mshaheen         ###   ########.fr       */
+/*   Updated: 2024/09/29 18:12:32 by mshaheen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,32 +69,36 @@ int    key_pressed(int key, t_game *game)
     return (0);
 }
 
-void    is_it_collectiible(t_game *game)
+void    is_it_collectiible(t_game *game, int x, int y)
 {
-    if (game->map[game->py][game->px - 1] == 'C')
-    {   
-        game->px--;
-        game->collect--;
-    }
-    else if (game->map[game->py][game->px + 1] == 'C')
-    {   
-        game->px++;
-        game->collect--;
-    }
-    else if (game->map[game->py - 1][game->px] == 'C')
-    {   
-        game->py--;
-        game->collect--;
-    }
-    else if (game->map[game->py + 1][game->px] == 'C')
-    {   
-        game->py++;
+    // if (game->map[game->py][game->px - 1] == 'C')
+    // {   
+    //     game->px--;
+    //     game->collect--;
+    // }
+    // else if (game->map[game->py][game->px + 1] == 'C')
+    // {   
+    //     game->px++;
+    //     game->collect--;
+    // }
+    // else if (game->map[game->py - 1][game->px] == 'C')
+    // {   
+    //     game->py--;
+    //     game->collect--;
+    // }
+    // else if (game->map[game->py + 1][game->px] == 'C')
+    // {   
+    //     game->py++;
+    //     game->collect--;
+    // }
+    if(game->map[y][x] == 'C')
+    {
         game->collect--;
     }
     game->steps++;
-    game->map[game->py][game->px] = 'P';
+    game->map[y][x] = 'P';
     printf("steps: %d\n", game->steps);
-    img_on_win(game, 32);
+    img_on_win(game, 64);
 }
 void    exit_game_done(t_game *game)
 {

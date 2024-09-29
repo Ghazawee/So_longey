@@ -49,11 +49,11 @@ void    put_imgs(t_game *game)
     int w;
     int h;
 
-    game->wimg = mlx_xpm_file_to_image(game->mlx_ptr, "imgs/walls.xpm", &w, &h);
-    game->pimg = mlx_xpm_file_to_image(game->mlx_ptr, "imgs/player.xpm", &w, &h);
-    game->fimg = mlx_xpm_file_to_image(game->mlx_ptr, "imgs/floor.xpm", &w, &h);
-    game->cimg = mlx_xpm_file_to_image(game->mlx_ptr, "imgs/collect.xpm", &w, &h);
-    game->eimg = mlx_xpm_file_to_image(game->mlx_ptr, "imgs/exit.xpm", &w, &h);
+    game->wimg = mlx_xpm_file_to_image(game->mlx_ptr, "imgs/wall_64.xpm", &w, &h);
+    game->pimg = mlx_xpm_file_to_image(game->mlx_ptr, "imgs/player3_64.xpm", &w, &h);
+    game->fimg = mlx_xpm_file_to_image(game->mlx_ptr, "imgs/floor_64.xpm", &w, &h);
+    game->cimg = mlx_xpm_file_to_image(game->mlx_ptr, "imgs/collect_64.xpm", &w, &h);
+    game->eimg = mlx_xpm_file_to_image(game->mlx_ptr, "imgs/exit_64.xpm", &w, &h);
 
     if (!game->wimg || !game->pimg || !game->fimg || !game->cimg || !game->eimg)
     {
