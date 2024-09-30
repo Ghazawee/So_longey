@@ -12,7 +12,7 @@ SRCS = so_long.c \
        map_parse.c \
        handle_events.c \
        bfs.c free.c \
-	   str_utils.c \
+	   str_utils.c errors.c\
        $(GNL_DIR)/get_next_line.c \
        $(GNL_DIR)/get_next_line_utils.c\
 	   $(FPF)/ft_printf.c $(FPF)/dicases.c\
