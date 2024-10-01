@@ -6,7 +6,7 @@
 /*   By: mshaheen <mshaheen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 14:36:58 by mshaheen          #+#    #+#             */
-/*   Updated: 2024/09/30 20:05:43 by mshaheen         ###   ########.fr       */
+/*   Updated: 2024/10/01 11:08:36 by mshaheen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,6 @@ void	begin_game(char *map, t_game *game)
 	}
 	put_imgs(game);
 	img_on_win(game, 64);
-	// mlx_key_hook(game->mlx_win, key_pressed, game);
 	mlx_hook(game->mlx_win, 2, 0, key_pressed, game);
 	mlx_hook(game->mlx_win, 17, 0, x_mark_clicked, game);
 	mlx_loop(game->mlx_ptr);
@@ -105,12 +104,12 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 	{
-		write(2, "Only one argument should be passed\n", 35);
+		write(2, "Only one argument should be passed with the program\n", 52);
 		exit(1);
 	}
 	if (check_ber(av[1]) == 0)
 	{
-		write(2, "Invalid Map\n", 12);
+		write(2, "Invalid Map extension\n", 22);
 		exit(1);
 	}
 	init_val(&game);

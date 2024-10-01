@@ -66,6 +66,6 @@ void	free_all(t_game *game)
 
 int	x_mark_clicked(t_game *game)
 {
-	exit_game_esc_x(game);
+	free_all(game);
 	exit(0);
 }

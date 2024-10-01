@@ -6,7 +6,7 @@
 /*   By: mshaheen <mshaheen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 14:37:07 by mshaheen          #+#    #+#             */
-/*   Updated: 2024/09/30 20:48:50 by mshaheen         ###   ########.fr       */
+/*   Updated: 2024/10/01 11:10:40 by mshaheen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ void		img_to_win_assist(t_game *game, int r, int c, int ts);
 int			key_pressed(int key, t_game *game);
 void		is_it_collectiible(t_game *game, int x, int y);
 void		is_exit_open(t_game *game);
-void		exit_game_esc_x(t_game *game);
 void		exit_game_done(t_game *game);
 
 // move_player
