@@ -14,12 +14,12 @@
 # define SO_LONG_H
 # include "ft_printf/ft_printf.h"
 # include "get_next_line/get_next_line.h"
-# include "mlx/mlx.h"
+//# include "mlx/mlx.h"
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-//#include "MinilibX/mlx.h"
+#include "MinilibX/mlx.h"
 
 typedef struct s_axis
 {
@@ -68,6 +68,9 @@ int			x_mark_clicked(t_game *game);
 
 // errors
 void		ft_error(int i);
+void free_visited(t_bfs *cir, int rows);
+void	ft_malloc_protect(t_bfs *cir, t_game *game, int i);
+void	ft_calloc_protect(t_bfs *cir, t_game *game, int i);
 void		img_to_win_assist(t_game *game, int r, int c, int ts);
 
 // handle_events

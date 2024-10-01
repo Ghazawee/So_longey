@@ -30,3 +30,50 @@ void	ft_error(int i)
 		exit(1);
 	}
 }
+
+
+void free_visited(t_bfs *cir, int rows)
+{
+	int j;
+
+	j = 0;
+	while (j < rows)
+		free(cir->visited[j++]);
+	free(cir->visited);
+}
+
+void	ft_malloc_protect(t_bfs *cir, t_game *game, int i)
+{
+	cir->queue = malloc(sizeof(t_axis) * ((game->columns * game->rows)));
+	if (!cir->queue)
+	{
+		free_map_array(game);
+		write(2, "Error in malloc\n", 16);
+		exit(1);
+	}
+	cir->visited = malloc(sizeof(int *) * (game->rows));
+	if (!cir->visited)
+	{
+		free_map_array(game);
+		free(cir->queue);
+		write(2, "Error in malloc\n", 16);
+		exit(1);
+	}
+}
+	
+void	ft_calloc_protect(t_bfs *cir, t_game *game, int i)
+{
+	while (i < game->rows)
+	{
+		cir->visited[i] = fts_calloc((size_t)(game->columns), sizeof(int));
+		if (!cir->visited[i])
+		{
+			free_visited(cir, i);
+			free(cir->queue);
+			free_map_array(game);
+			write(2, "Error in malloc visited\n", 24);
+			exit(1);
+		}
+		i++
+	}
+}

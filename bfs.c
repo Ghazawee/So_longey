@@ -17,19 +17,19 @@ void	enqueue(t_bfs *cir, int x, int y);
 void	process_pos(t_game *game, t_bfs *cir, t_axis curr);
 void	freevq(t_bfs *cir, t_game *game);
 
+
+
 void	bfs(t_game *game)
 {
 	t_bfs	cir;
 	int		i;
 	t_axis	curr;
 
-	cir.queue = malloc(sizeof(t_axis) * ((game->columns * game->rows)));
+	ft_malloc_protect(&cir, game);
 	cir.rear = 0;
 	cir.front = 0;
-	cir.visited = malloc(sizeof(int *) * (game->rows));
 	i = 0;
-	while (i < game->rows)
-		cir.visited[i++] = fts_calloc((size_t)(game->columns), sizeof(int));
+	ft_calloc_protect(&cir, game, i);
 	cir.checkc = game->collect;
 	enqueue(&cir, game->px, game->py);
 	while (cir.front < cir.rear)
@@ -85,6 +85,7 @@ void	process_pos(t_game *game, t_bfs *cir, t_axis curr)
 	if (is_valid_path(game, cir, x + 1, y) && !cir->visited[y][x + 1])
 		enqueue(cir, x + 1, y);
 }
+
 
 void	freevq(t_bfs *cir, t_game *game)
 {
